@@ -328,6 +328,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-tpresttest/app.config
-tpresttest/Properties/Settings.Designer.cs
-tpresttest/Properties/Settings.settings
