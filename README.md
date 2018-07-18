@@ -5,7 +5,7 @@ This repo will also contain an example of how to use the tp! Api through Autodes
 
 # Configuration for RestTests
 To run tpresttests using Visual Studio you'll have to specify your tp! Config in the project's settings:
-- BaseUri: base uri to your instance
+- BaseUri: base uri to your instance (eg. https://www21.thinkproject.com/tp21)
 - Username: username to connect with
 - Password: matching password
 - AppKey: your tp! App Key
