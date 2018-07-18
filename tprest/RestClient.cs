@@ -66,7 +66,7 @@ namespace thinkproject
                 var request = new RestSharp.RestRequest(String.Format("{0}{1}", BaseUri, path), method);
                 request.AddHeader("X-TP-APPLICATION-CODE", AppKey);
                 request.AddHeader("Content-Type", "application/json");
-                if (token != string.Empty) request.AddHeader("Token", token);
+                if (token != string.Empty) request.AddHeader("Authorization", String.Format("Bearer {0}",token));
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 if (body != null) request.AddBody(body);
                 request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
@@ -85,6 +85,15 @@ namespace thinkproject
         {
             var response = ExecuteRequest("/services/api/auth", RestSharp.Method.POST, "", new { username = user, password = pass });
             if (response != null && response.ContainsKey("token")) this.Token = response["token"].ToString();
+        }
+
+        /// <summary>
+        /// Get all projects
+        /// </summary>
+        /// <returns>List of projects</returns>
+        public SimpleJson.JsonObject Projects()
+        {
+            return ExecuteRequest("/services/api/projects", RestSharp.Method.GET, this.Token);
         }
 
 

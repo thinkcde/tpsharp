@@ -13,5 +13,6 @@ namespace thinkproject
             c.Authenticate(Properties.Settings.Default.Username, Properties.Settings.Default.Password);
             Assert.IsTrue(c.IsAuthenticated);
         }
+
     }
 }
