@@ -91,9 +91,9 @@ namespace thinkproject
         /// Get all projects
         /// </summary>
         /// <returns>List of projects</returns>
-        public SimpleJson.JsonObject Projects()
+        public IDictionary<string,object> Projects()
         {
-            return ExecuteRequest("/services/api/projects", RestSharp.Method.GET, this.Token);
+            return ExecuteRequest("/services/api/projects", RestSharp.Method.GET, this.Token).ToDictionary(p => p.Key,p => p.Value);
         }
 
 
