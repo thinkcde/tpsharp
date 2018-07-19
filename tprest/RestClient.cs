@@ -59,14 +59,15 @@ namespace thinkproject
         /// <param name="token">Optional: Token</param>
         /// <param name="body">Optional: Body object</param>
         /// <returns>Json Dictionary</returns>
-        private SimpleJson.JsonObject ExecuteRequest(string path, RestSharp.Method method, string token = "", object body = null)
+        public SimpleJson.JsonObject ExecuteRequest(string path, RestSharp.Method method, object body = null)
         {
             try
             {
-                var request = new RestSharp.RestRequest(String.Format("{0}{1}", BaseUri, path), method);
+                string restpath = (path.StartsWith(BaseUri)) ? path : String.Format("{0}{1}", BaseUri, path);
+                var request = new RestSharp.RestRequest(restpath, method);
                 request.AddHeader("X-TP-APPLICATION-CODE", AppKey);
                 request.AddHeader("Content-Type", "application/json");
-                if (token != string.Empty) request.AddHeader("Authorization", String.Format("Bearer {0}",token));
+                if (this.Token != string.Empty) request.AddHeader("Authorization", String.Format("Bearer {0}",this.Token));
                 request.RequestFormat = RestSharp.DataFormat.Json;
                 if (body != null) request.AddBody(body);
                 request.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
@@ -83,17 +84,8 @@ namespace thinkproject
         /// <param name="pass">Password</param>
         public void Authenticate(string user, string pass)
         {
-            var response = ExecuteRequest("/services/api/auth", RestSharp.Method.POST, "", new { username = user, password = pass });
+            var response = ExecuteRequest("/services/api/auth", RestSharp.Method.POST, new { username = user, password = pass });
             if (response != null && response.ContainsKey("token")) this.Token = response["token"].ToString();
-        }
-
-        /// <summary>
-        /// Get all projects
-        /// </summary>
-        /// <returns>List of projects</returns>
-        public IDictionary<string,object> Projects()
-        {
-            return ExecuteRequest("/services/api/projects", RestSharp.Method.GET, this.Token).ToDictionary(p => p.Key,p => p.Value);
         }
 
 

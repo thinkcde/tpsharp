@@ -13,13 +13,16 @@ namespace tpDynamo
     [IsVisibleInDynamoLibrary(false)]
     public class ApiConnection
     {
+        /// <summary>
+        /// tp Rest Connection
+        /// </summary>
         public thinkproject.RestClient Connection;
     }
 
     /// <summary>
     /// tp! Api Nodes
     /// </summary>
-    public static class Nodes
+    public static class API
     {
         /// <summary>
         /// Authenticate using credentials
@@ -34,16 +37,6 @@ namespace tpDynamo
             thinkproject.RestClient rc = new thinkproject.RestClient(baseUri, appKey);
             rc.Authenticate(username, password);
             return new ApiConnection() { Connection = rc };
-        }
-
-        /// <summary>
-        /// List tp! Projects
-        /// </summary>
-        /// <param name="connection">tp! Api Connection</param>
-        /// <returns>Dictionary of projects</returns>
-        public static IDictionary<string,object> ListProjects(ApiConnection connection)
-        {
-            return connection.Connection.Projects();
         }
     }
 }
