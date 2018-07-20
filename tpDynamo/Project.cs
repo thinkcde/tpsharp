@@ -49,6 +49,16 @@ namespace tpDynamo
         }
 
         /// <summary>
+        /// List tp! Filters
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Filter> GetFilters(thinkproject.Project project)
+        {
+            return thinkproject.Filter.GetFilters(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
         /// Get Project Name
         /// </summary>
         /// <param name="project">tp! Project</param>

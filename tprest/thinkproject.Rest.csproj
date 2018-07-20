@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocumentFormDefinition.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="Filter.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
