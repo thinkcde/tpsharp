@@ -61,7 +61,7 @@ namespace tpDynamo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No API Connection, please make sure you are connected to the tp! API.
+        ///   Looks up a localized string similar to No API Connection, please use the Project.GetProjects Node to connect to the tp! API.
         /// </summary>
         internal static string NoAPI {
             get {
