@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 namespace thinkproject
 {
     /// <summary>
-    /// tp! Project
+    /// tp! DocumentFormDefinition
     /// </summary>
-    public class Project
+    public class DocumentFormDefinition
     {
         /// <summary>
-        /// Project Title
+        /// DocumentFormDefinition Title
         /// </summary>
         public string Title;
 
         /// <summary>
-        /// Project Url
+        /// DocumentFormDefinition Url
         /// </summary>
         public string Url;
 
@@ -31,30 +31,31 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Projects
+        /// Get all DocumentFormDefinitions
         /// </summary>
+        /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Project> GetProjects(RestClient client)
+        public static List<DocumentFormDefinition> GetDocumentFormDefinitions(Project project, RestClient client)
         {
-            dynamic projects = client.ExecuteRequest("/services/api/projects", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Project> pros = new List<Project>();
-            foreach (var p in projects["projects"])
+            dynamic data = client.ExecuteRequest(project.Url + "/document_form_definitions", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<DocumentFormDefinition> pros = new List<DocumentFormDefinition>();
+            foreach (var p in data["document_form_definitions"])
             {
-                pros.Add(new Project() { Title = p["title"], Url = p["href"] });
+                pros.Add(new DocumentFormDefinition() { Title = p["title"], Url = p["href"] });
             }
             return pros;
         }
 
         /// <summary>
-        /// Get Project Details
+        /// Get DocumentFormDefinition Details
         /// </summary>
         /// <param name="client">tp! Rest Client</param>
         /// <returns>Project Details</returns>
         public IDictionary<string,object> GetDetails(RestClient client)
         {
             dynamic projects = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            SimpleJson.JsonObject data = projects["project"];
+            SimpleJson.JsonObject data = projects["document_form_definition"];
             return data.ToDictionary(p => p.Key, p => p.Value);
         }
     }

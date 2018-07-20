@@ -13,24 +13,39 @@ namespace tpDynamo
     public static class Project
     {
         /// <summary>
-        /// List tp! Projects
+        /// Get all tp! Projects
         /// </summary>
-        /// <param name="connection">tp! Api Connection</param>
-        /// <returns>Dictionary of projects</returns>
-        public static IEnumerable<thinkproject.Project> GetProjects(ApiConnection connection)
+        /// <param name="appKey">AppKey</param>
+        /// <param name="baseUri">BaseUri</param>
+        /// <param name="username">Username</param>
+        /// <param name="password">Password</param>
+        /// <returns>All tp! Projects for this user</returns>
+        public static IEnumerable<thinkproject.Project> GetProjects(string appKey, string baseUri, string username, string password)
         {
-            return thinkproject.Project.GetProjects(connection.Connection);
+            ApiConnection.Connect(appKey, baseUri, username, password);
+            return thinkproject.Project.GetProjects(ApiConnection.GetConnection());
         }
 
         /// <summary>
         /// Get Project Info
         /// </summary>
-        /// <param name="connection">tp! Api Connection</param>
         /// <param name="project">tp! Project</param>
         /// <returns>Project Info</returns>
-        public static IDictionary<string,object> GetInfo(ApiConnection connection, thinkproject.Project project)
+        public static IDictionary<string,object> GetInfo(thinkproject.Project project)
         {
-            return project.GetDetails(connection.Connection);
+            var info = project.GetDetails(ApiConnection.GetConnection());
+            Type t = info.GetType();
+            return info;
+        }
+
+        /// <summary>
+        /// List tp! DocumentFormDefinitions
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of DocumentFormDefinitions</returns>
+        public static IEnumerable<thinkproject.DocumentFormDefinition> GetDocumentFormDefinitions(thinkproject.Project project)
+        {
+            return thinkproject.DocumentFormDefinition.GetDocumentFormDefinitions(project, ApiConnection.GetConnection());
         }
 
         /// <summary>

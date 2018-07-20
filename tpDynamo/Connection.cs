@@ -11,32 +11,40 @@ namespace tpDynamo
     /// Api Connection Wrapper
     /// </summary>
     [IsVisibleInDynamoLibrary(false)]
-    public class ApiConnection
+    public static class ApiConnection
     {
         /// <summary>
-        /// tp Rest Connection
+        /// tp Rest Connection Singleton
         /// </summary>
-        public thinkproject.RestClient Connection;
-    }
+        private static thinkproject.RestClient Connection;
 
-    /// <summary>
-    /// tp! Api Nodes
-    /// </summary>
-    public static class API
-    {
         /// <summary>
-        /// Authenticate using credentials
+        /// Get tp! API Connection
+        /// </summary>
+        /// <returns>Api Connection</returns>
+        [IsVisibleInDynamoLibrary(false)]
+        public static thinkproject.RestClient GetConnection()
+        {
+            if (Connection == null)
+                throw new Exception(Properties.Resources.NoAPI);
+            else
+                return Connection;
+        }
+
+        /// <summary>
+        /// Connect to Tp API
         /// </summary>
         /// <param name="appKey">AppKey</param>
         /// <param name="baseUri">BaseUri</param>
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
-        /// <returns>A tp! API connection</returns>
-        public static ApiConnection Connect(string appKey, string baseUri, string username, string password)
+        [IsVisibleInDynamoLibrary(false)]
+        public static void Connect(string appKey, string baseUri, string username, string password)
         {
-            thinkproject.RestClient rc = new thinkproject.RestClient(baseUri, appKey);
-            rc.Authenticate(username, password);
-            return new ApiConnection() { Connection = rc };
+            Connection = new thinkproject.RestClient(baseUri, appKey);
+            Connection.Authenticate(username, password);
         }
     }
+
+   
 }
