@@ -30,8 +30,29 @@ namespace thinkproject
             thinkproject.RestClient c = new thinkproject.RestClient(Properties.Settings.Default.BaseUri, Properties.Settings.Default.AppKey);
             c.Authenticate(Properties.Settings.Default.Username, Properties.Settings.Default.Password);
             var p = thinkproject.Project.GetProjects(c);
-            var dfd = thinkproject.DocumentFormDefinitions.GetDocumentFormDefinitions(p[0], c);
+            var dfd = thinkproject.DocumentFormDefinition.GetDocumentFormDefinitions(p[0], c);
             Assert.IsNotNull(dfd);
+        }
+
+        [TestMethod]
+        public void FilterTest()
+        {
+            thinkproject.RestClient c = new thinkproject.RestClient(Properties.Settings.Default.BaseUri, Properties.Settings.Default.AppKey);
+            c.Authenticate(Properties.Settings.Default.Username, Properties.Settings.Default.Password);
+            var p = thinkproject.Project.GetProjects(c);
+            var dfd = thinkproject.Filter.GetFilters(p[0], c);
+            Assert.IsNotNull(dfd);
+        }
+
+        [TestMethod]
+        public void DocumentTest()
+        {
+            thinkproject.RestClient c = new thinkproject.RestClient(Properties.Settings.Default.BaseUri, Properties.Settings.Default.AppKey);
+            c.Authenticate(Properties.Settings.Default.Username, Properties.Settings.Default.Password);
+            var p = thinkproject.Project.GetProjects(c);
+            var dfd = thinkproject.Filter.GetFilters(p[0], c);
+            var docs = thinkproject.Document.GetDocuments(dfd[6], c);
+            Assert.IsNotNull(docs);
         }
     }
 }
