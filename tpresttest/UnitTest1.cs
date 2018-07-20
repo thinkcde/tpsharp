@@ -22,5 +22,16 @@ namespace thinkproject
             var p = thinkproject.Project.GetProjects(c);
             Assert.IsNotNull(p);
         }
+
+
+        [TestMethod]
+        public void DFDTest()
+        {
+            thinkproject.RestClient c = new thinkproject.RestClient(Properties.Settings.Default.BaseUri, Properties.Settings.Default.AppKey);
+            c.Authenticate(Properties.Settings.Default.Username, Properties.Settings.Default.Password);
+            var p = thinkproject.Project.GetProjects(c);
+            var dfd = thinkproject.DocumentFormDefinitions.GetDocumentFormDefinitions(p[0], c);
+            Assert.IsNotNull(dfd);
+        }
     }
 }
