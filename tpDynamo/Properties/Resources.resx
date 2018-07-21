@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NoAPI" xml:space="preserve">
-    <value>No API Connection, please use the Project.GetProjects Node to connect to the tp! API</value>
+    <value>No API Connection: please use the Project &gt; GetProjects Node to connect to the thinkprpject! API first. Once connected all Nodes will work as expected.</value>
+  </data>
+  <data name="NoConnection" xml:space="preserve">
+    <value>Failed to connect to thinkproject! API. Please make sure your credentials are correct and you are connected to the internet.</value>
   </data>
 </root>
