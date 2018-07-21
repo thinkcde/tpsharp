@@ -31,7 +31,7 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all DocumentFormDefinitions
+        /// Get all Filters from Projects
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
@@ -39,6 +39,23 @@ namespace thinkproject
         public static List<Filter> GetFilters(Project project, RestClient client)
         {
             dynamic data = client.ExecuteRequest(project.Url + "/filters", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<Filter> pros = new List<Filter>();
+            foreach (var p in data["filters"])
+            {
+                pros.Add(new Filter() { Title = p["title"], Url = p["href"] });
+            }
+            return pros;
+        }
+
+        /// <summary>
+        /// Get all Filters from DocumentFormDefinitions
+        /// </summary>
+        /// <param name="definition">tp! DocumentFormDefinitions</param>
+        /// <param name="client">tp! Rest Client</param>
+        /// <returns></returns>
+        public static List<Filter> GetFilters(DocumentFormDefinition definition, RestClient client)
+        {
+            dynamic data = client.ExecuteRequest(definition.Url + "/filters", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
             List<Filter> pros = new List<Filter>();
             foreach (var p in data["filters"])
             {
