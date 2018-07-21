@@ -20,7 +20,6 @@ namespace tpDynamo
         public static IDictionary<string,object> GetInfo(thinkproject.Filter filter)
         {
             var info = filter.GetDetails(ApiConnection.GetConnection());
-            Type t = info.GetType();
             return info;
         }
 

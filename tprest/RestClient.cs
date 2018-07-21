@@ -85,7 +85,10 @@ namespace thinkproject
         public void Authenticate(string user, string pass)
         {
             var response = ExecuteRequest("/services/api/auth", RestSharp.Method.POST, new { username = user, password = pass });
-            if (response != null && response.ContainsKey("token")) this.Token = response["token"].ToString();
+            if (response != null && response.ContainsKey("token"))
+                this.Token = response["token"].ToString();
+            else
+                this.Token = string.Empty;
         }
 
 

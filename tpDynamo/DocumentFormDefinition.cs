@@ -20,7 +20,6 @@ namespace tpDynamo
         public static IDictionary<string,object> GetInfo(thinkproject.DocumentFormDefinition definition)
         {
             var info = definition.GetDetails(ApiConnection.GetConnection());
-            Type t = info.GetType();
             return info;
         }
 

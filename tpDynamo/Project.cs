@@ -22,7 +22,8 @@ namespace tpDynamo
         /// <returns>All tp! Projects for this user</returns>
         public static IEnumerable<thinkproject.Project> GetProjects(string appKey, string baseUri, string username, string password)
         {
-            ApiConnection.Connect(appKey, baseUri, username, password);
+            bool connected = ApiConnection.Connect(appKey, baseUri, username, password);
+            if (!connected) throw new Exception(Properties.Resources.NoConnection);
             return thinkproject.Project.GetProjects(ApiConnection.GetConnection());
         }
 
@@ -34,7 +35,6 @@ namespace tpDynamo
         public static IDictionary<string,object> GetInfo(thinkproject.Project project)
         {
             var info = project.GetDetails(ApiConnection.GetConnection());
-            Type t = info.GetType();
             return info;
         }
 

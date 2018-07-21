@@ -61,11 +61,20 @@ namespace tpDynamo.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No API Connection, please use the Project.GetProjects Node to connect to the tp! API.
+        ///   Looks up a localized string similar to No API Connection: please use the Project &gt; GetProjects Node to connect to the thinkprpject! API first. Once connected all Nodes will work as expected..
         /// </summary>
         internal static string NoAPI {
             get {
                 return ResourceManager.GetString("NoAPI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to connect to thinkproject! API. Please make sure your credentials are correct and you are connected to the internet..
+        /// </summary>
+        internal static string NoConnection {
+            get {
+                return ResourceManager.GetString("NoConnection", resourceCulture);
             }
         }
     }
