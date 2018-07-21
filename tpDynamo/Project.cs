@@ -59,6 +59,26 @@ namespace tpDynamo
         }
 
         /// <summary>
+        /// List tp! Members
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Member> GetMembers(thinkproject.Project project)
+        {
+            return thinkproject.Member.GetMembers(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
+        /// List tp! Companies
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Company> GetCompanies(thinkproject.Project project)
+        {
+            return thinkproject.Company.GetCompanies(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
         /// Get Project Name
         /// </summary>
         /// <param name="project">tp! Project</param>

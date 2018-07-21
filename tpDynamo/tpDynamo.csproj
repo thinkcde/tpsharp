@@ -69,8 +69,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Member.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="Company.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="DocumentFormDefinition.cs" />
     <Compile Include="Project.cs" />
