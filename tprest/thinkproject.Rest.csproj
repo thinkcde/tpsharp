@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Meta.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="DocumentFormDefinition.cs" />
     <Compile Include="Document.cs" />
