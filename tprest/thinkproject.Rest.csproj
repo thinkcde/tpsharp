@@ -49,7 +49,10 @@
     <Compile Include="DocumentFormDefinition.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="Draft.cs" />
+    <Compile Include="DraftDocument.cs" />
     <Compile Include="Filter.cs" />
+    <Compile Include="Communication.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
