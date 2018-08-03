@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Draft.cs" />
+    <Compile Include="DraftDocument.cs" />
+    <Compile Include="Communication.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="DocumentFormDefinition.cs" />

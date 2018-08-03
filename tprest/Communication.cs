@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 namespace thinkproject
 {
     /// <summary>
-    /// Filter
+    /// tp! Communication
     /// </summary>
-    public class Filter
+    public class Communication
     {
-        /// <summary>
-        /// Url
-        /// </summary>
-        public string Url;
 
         /// <summary>
-        /// Title
+        /// Communication Title
         /// </summary>
         public string Title;
+
+        /// <summary>
+        /// Communication Url
+        /// </summary>
+        public string Url;
 
         /// <summary>
         /// ToString Override
@@ -31,32 +32,35 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Filters
+        /// Get all Communications
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Filter> GetFilters(Project project, RestClient client)
+        public static List<Draft> GetDraftDocuments(Draft draft, RestClient client)
         {
-            dynamic data = client.ExecuteRequest(project.Url + "/filters", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Filter> pros = new List<Filter>();
-            foreach (var p in data["filters"])
+            dynamic data = client.ExecuteRequest(draft.Url + "/draftdocuments", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<Draft> drafts = new List<Draft>();
+            foreach (var p in data["draftdocuments"])
             {
-                pros.Add(new Filter() { Title = p["title"], Url = p["href"] });
+                drafts.Add(new Draft() { Title = p["title"], Url = p["href"] });
             }
-            return pros;
+            return drafts;
         }
 
+
         /// <summary>
-        /// Get Filter Details
+        /// Get Communication Details
         /// </summary>
         /// <param name="client">tp! Rest Client</param>
-        /// <returns>Filter Details</returns>
+        /// <returns>Communication Details</returns>
         public IDictionary<string, object> GetDetails(RestClient client)
         {
-            dynamic projects = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            SimpleJson.JsonObject data = projects["filter"];
+            dynamic communications = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            SimpleJson.JsonObject data = communications["communication"];
             return data.ToDictionary(p => p.Key, p => p.Value);
         }
     }
+
 }
+
