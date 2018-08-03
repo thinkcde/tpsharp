@@ -31,7 +31,7 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all DocumentFormDefinitions
+        /// Get all DocumentFormDefinitions from Project
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
@@ -39,19 +39,19 @@ namespace thinkproject
         public static List<DocumentFormDefinition> GetDocumentFormDefinitions(Project project, RestClient client)
         {
             dynamic data = client.ExecuteRequest(project.Url + "/document_form_definitions", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<DocumentFormDefinition> pros = new List<DocumentFormDefinition>();
+            List<DocumentFormDefinition> documentFormDefinitions = new List<DocumentFormDefinition>();
             foreach (var p in data["document_form_definitions"])
             {
-                pros.Add(new DocumentFormDefinition() { Title = p["title"], Url = p["href"] });
+                documentFormDefinitions.Add(new DocumentFormDefinition() { Title = p["title"], Url = p["href"] });
             }
-            return pros;
+            return documentFormDefinitions;
         }
 
         /// <summary>
         /// Get DocumentFormDefinition Details
         /// </summary>
         /// <param name="client">tp! Rest Client</param>
-        /// <returns>Project Details</returns>
+        /// <returns>DocumentFormDefinition Details</returns>
         public IDictionary<string,object> GetDetails(RestClient client)
         {
             dynamic projects = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);

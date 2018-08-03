@@ -31,7 +31,7 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Filters from Projects
+        /// Get all Filters from Project
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
@@ -48,9 +48,9 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Filters from DocumentFormDefinitions
+        /// Get all Filters from DocumentFormDefinition
         /// </summary>
-        /// <param name="definition">tp! DocumentFormDefinitions</param>
+        /// <param name="definition">tp! DocumentFormDefinition</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
         public static List<Filter> GetFilters(DocumentFormDefinition definition, RestClient client)

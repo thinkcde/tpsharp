@@ -58,10 +58,10 @@ namespace thinkproject
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="dfd">tp! Document Form Definition a.k.a. Document Type</param>
+        /// <param name="documentFormDefinition">tp! DocumentFormDefinition</param>
         /// <param name="client">tp! Rest Client</param>
         /// <param name="values"></param>
-        public void AddDraftDocument(DocumentFormDefinition dfd, RestClient client, Dictionary<string, object> values = null)
+        public void AddDraftDocument(DocumentFormDefinition documentFormDefinition, RestClient client, Dictionary<string, object> values = null)
         {
 
         }
@@ -90,7 +90,7 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Drafts
+        /// Get all Drafts from Project
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>

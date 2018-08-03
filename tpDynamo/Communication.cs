@@ -15,7 +15,7 @@ namespace tpDynamo
         /// <summary>
         /// Get Communication Info
         /// </summary>
-        /// <param name="communication">tp! Communications</param>
+        /// <param name="communication">tp! Communication</param>
         /// <returns>Communication Info</returns>
         public static IDictionary<string,object> GetInfo(thinkproject.Communication communication)
         {

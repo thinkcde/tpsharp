@@ -32,20 +32,20 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Communications
+        /// Get all Communications from Filter
         /// </summary>
-        /// <param name="project">tp! Project</param>
+        /// <param name="filter">tp! Filter</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Draft> GetDraftDocuments(Draft draft, RestClient client)
+        public static List<Communication> GetCommunications(Filter filter, RestClient client)
         {
-            dynamic data = client.ExecuteRequest(draft.Url + "/draftdocuments", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Draft> drafts = new List<Draft>();
-            foreach (var p in data["draftdocuments"])
+            dynamic data = client.ExecuteRequest(filter.Url + "/communications", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<Communication> communications = new List<Communication>();
+            foreach (var p in data["communications"])
             {
-                drafts.Add(new Draft() { Title = p["title"], Url = p["href"] });
+                communications.Add(new Communication() { Title = p["title"], Url = p["href"] });
             }
-            return drafts;
+            return communications;
         }
 
 

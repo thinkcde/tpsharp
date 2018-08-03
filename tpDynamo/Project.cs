@@ -79,6 +79,16 @@ namespace tpDynamo
         }
 
         /// <summary>
+        /// List tp! Drafts
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Drafts</returns>
+        public static IEnumerable<thinkproject.Draft> GetDrafts(thinkproject.Project project)
+        {
+            return thinkproject.Draft.GetDrafts(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
         /// Get Project Name
         /// </summary>
         /// <param name="project">tp! Project</param>

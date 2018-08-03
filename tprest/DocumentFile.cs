@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace thinkproject
 {
     /// <summary>
-    /// Document
+    /// DocumentFile
     /// </summary>
-    public class Document
+    public class DocumentFile
     {
         /// <summary>
         /// Url
@@ -31,31 +31,31 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Documents from Filter
+        /// Get all DocumentFiles from Document
         /// </summary>
-        /// <param name="filter">tp! Filter</param>
+        /// <param name="document">tp! Document</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Document> GetDocuments(Filter filter, RestClient client)
+        public static List<DocumentFile> GetDocumentFiles(Document document, RestClient client)
         {
-            dynamic data = client.ExecuteRequest(filter.Url + "/documents", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Document> documents = new List<Document>();
-            foreach (var p in data["documents"])
+            dynamic data = client.ExecuteRequest(document.Url + "/document_files", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<DocumentFile> documentFiles = new List<DocumentFile>();
+            foreach (var p in data["document_files"])
             {
-                documents.Add(new Document() { Title = p["title"], Url = p["href"] });
+                documentFiles.Add(new DocumentFile() { Title = p["title"], Url = p["href"] });
             }
-            return documents;
+            return documentFiles;
         }
 
         /// <summary>
-        /// Get Document Details
+        /// Get DocumentFile Details
         /// </summary>
         /// <param name="client">tp! Rest Client</param>
-        /// <returns>Document Details</returns>
+        /// <returns>DocumentFile Details</returns>
         public IDictionary<string, object> GetDetails(RestClient client)
         {
             dynamic projects = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            SimpleJson.JsonObject data = projects["document"];
+            SimpleJson.JsonObject data = projects["document_file"];
             return data.ToDictionary(p => p.Key, p => p.Value);
         }
     }
