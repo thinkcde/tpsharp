@@ -67,16 +67,6 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// This method gets all the attached draft documents, if there are any
-        /// </summary>
-        /// <returns>The attached draft documents</returns>
-        public List<DraftDocument> GetDraftDocuments()
-        {
-            List<DraftDocument> draftDocuments = new List<DraftDocument>();
-            return draftDocuments;
-        }
-
-        /// <summary>
         /// This method sends this draft with its attached draft documents, if there are any 
         /// </summary>
         public void SendDraft()

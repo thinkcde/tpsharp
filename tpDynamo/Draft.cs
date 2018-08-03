@@ -44,5 +44,14 @@ namespace tpDynamo
             return draft.Url;
         }
 
+        /// <summary>
+        /// List tp! DraftDocuments
+        /// </summary>
+        /// <param name="draft">tp! Draft</param>
+        /// <returns>Dictionary of DraftDocuments</returns>
+        public static IEnumerable<thinkproject.DraftDocument> GetDraftDocuments(thinkproject.Draft draft)
+        {
+            return thinkproject.DraftDocument.GetDraftDocuments(draft, ApiConnection.GetConnection());
+        }
     }
 }

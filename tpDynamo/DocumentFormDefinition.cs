@@ -53,5 +53,14 @@ namespace tpDynamo
             return thinkproject.Filter.GetFilters(definition, ApiConnection.GetConnection());
         }
 
+        /// <summary>
+        /// List tp! DocumentFieldDefinitions
+        /// </summary>
+        /// <param name="definition">tp! DocumentFormDefinitions</param>
+        /// <returns>Dictionary of DocumentFormDefinitions</returns>
+        public static IEnumerable<thinkproject.DocumentFieldDefinition> GetDocumentFieldDefinitions(thinkproject.DocumentFormDefinition definition)
+        {
+            return thinkproject.DocumentFieldDefinition.GetDocumentFieldDefinitions(definition, ApiConnection.GetConnection());
+        }
     }
 }

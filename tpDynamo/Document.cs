@@ -43,5 +43,15 @@ namespace tpDynamo
             return document.Url;
         }
 
+        /// <summary>
+        /// List tp! DocumentFiles
+        /// </summary>
+        /// <param name="document">tp! DocumentFile</param>
+        /// <returns>Dictionary of DocumentFiles</returns>
+        public static IEnumerable<thinkproject.DocumentFile> GetDocumentFiles(thinkproject.Document document)
+        {
+            return thinkproject.DocumentFile.GetDocumentFiles(document, ApiConnection.GetConnection());
+        }
+
     }
 }
