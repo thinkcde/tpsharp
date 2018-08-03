@@ -20,7 +20,6 @@ namespace tpDynamo
         public static IDictionary<string,object> GetInfo(thinkproject.DocumentFormDefinition definition)
         {
             var info = definition.GetDetails(ApiConnection.GetConnection());
-            Type t = info.GetType();
             return info;
         }
 
@@ -42,6 +41,16 @@ namespace tpDynamo
         public static string GetUrl(thinkproject.DocumentFormDefinition definition)
         {
             return definition.Url;
+        }
+
+        /// <summary>
+        /// List tp! Filters
+        /// </summary>
+        /// <param name="definition">tp! DocumentFormDefinition</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Filter> GetFilters(thinkproject.DocumentFormDefinition definition)
+        {
+            return thinkproject.Filter.GetFilters(definition, ApiConnection.GetConnection());
         }
 
     }

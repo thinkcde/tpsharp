@@ -22,7 +22,8 @@ namespace tpDynamo
         /// <returns>All tp! Projects for this user</returns>
         public static IEnumerable<thinkproject.Project> GetProjects(string appKey, string baseUri, string username, string password)
         {
-            ApiConnection.Connect(appKey, baseUri, username, password);
+            bool connected = ApiConnection.Connect(appKey, baseUri, username, password);
+            if (!connected) throw new Exception(Properties.Resources.NoConnection);
             return thinkproject.Project.GetProjects(ApiConnection.GetConnection());
         }
 
@@ -34,7 +35,6 @@ namespace tpDynamo
         public static IDictionary<string,object> GetInfo(thinkproject.Project project)
         {
             var info = project.GetDetails(ApiConnection.GetConnection());
-            Type t = info.GetType();
             return info;
         }
 
@@ -56,6 +56,26 @@ namespace tpDynamo
         public static IEnumerable<thinkproject.Filter> GetFilters(thinkproject.Project project)
         {
             return thinkproject.Filter.GetFilters(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
+        /// List tp! Members
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Member> GetMembers(thinkproject.Project project)
+        {
+            return thinkproject.Member.GetMembers(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
+        /// List tp! Companies
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of Filters</returns>
+        public static IEnumerable<thinkproject.Company> GetCompanies(thinkproject.Project project)
+        {
+            return thinkproject.Company.GetCompanies(project, ApiConnection.GetConnection());
         }
 
         /// <summary>

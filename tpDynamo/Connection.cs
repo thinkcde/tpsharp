@@ -39,10 +39,15 @@ namespace tpDynamo
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
         [IsVisibleInDynamoLibrary(false)]
-        public static void Connect(string appKey, string baseUri, string username, string password)
+        public static bool Connect(string appKey, string baseUri, string username, string password)
         {
-            Connection = new thinkproject.RestClient(baseUri, appKey);
-            Connection.Authenticate(username, password);
+            try
+            {
+                Connection = new thinkproject.RestClient(baseUri, appKey);
+                Connection.Authenticate(username, password);
+                return Connection.IsAuthenticated;
+            }
+            catch (Exception e) { return false; }
         }
     }
 
