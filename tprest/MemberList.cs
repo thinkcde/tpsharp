@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 namespace thinkproject
 {
     /// <summary>
-    /// Company
+    /// tp! MemberList
     /// </summary>
-    public class Company
+    public class MemberList
     {
-        /// <summary>
-        /// Url
-        /// </summary>
-        public string Url;
 
         /// <summary>
-        /// Title
+        /// MemberList Title
         /// </summary>
         public string Title;
+
+        /// <summary>
+        /// MemberList Url
+        /// </summary>
+        public string Url;
 
         /// <summary>
         /// ToString Override
@@ -31,33 +32,35 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all Companies of a Project
+        /// Get all MemberLists
         /// </summary>
         /// <param name="project">tp! Project</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Company> GetCompanies(Project project, RestClient client)
+        public static List<MemberList> GetMemberLists(Project project, RestClient client)
         {
-            dynamic data = client.ExecuteRequest(project.Url + "/companies", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Company> companies = new List<Company>();
-            foreach (var p in data["companies"])
+            dynamic data = client.ExecuteRequest(project.Url + "/roles", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<MemberList> memberLists = new List<MemberList>();
+            foreach (var p in data["role"])
             {
-                companies.Add(new Company() { Title = p["title"], Url = p["href"] });
+                memberLists.Add(new MemberList() { Title = p["title"], Url = p["href"] });
             }
-            return companies;
+            return memberLists;
         }
 
 
         /// <summary>
-        /// Get Company Details
+        /// Get MemberList Details
         /// </summary>
         /// <param name="client">tp! Rest Client</param>
-        /// <returns>Company Details</returns>
+        /// <returns>MemberList Details</returns>
         public IDictionary<string, object> GetDetails(RestClient client)
         {
-            dynamic projects = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            SimpleJson.JsonObject data = projects["company"];
+            dynamic memberLists = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            SimpleJson.JsonObject data = memberLists["role"];
             return data.ToDictionary(p => p.Key, p => p.Value);
         }
     }
+
 }
+

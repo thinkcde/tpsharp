@@ -37,20 +37,20 @@ namespace thinkproject
         }
 
         /// <summary>
-        /// Get all DraftDocuments
+        /// Get all DraftDocuments from Draft
         /// </summary>
         /// <param name="draft">tp! Draft</param>
         /// <param name="client">tp! Rest Client</param>
         /// <returns></returns>
-        public static List<Draft> GetDraftDocuments(Draft draft, RestClient client)
+        public static List<DraftDocument> GetDraftDocuments(Draft draft, RestClient client)
         {
-            dynamic data = client.ExecuteRequest(draft.Url + "/draftdocuments", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            List<Draft> drafts = new List<Draft>();
-            foreach (var p in data["draftdocuments"])
+            dynamic data = client.ExecuteRequest(draft.Url + "/draft_documents", RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
+            List<DraftDocument> draftDocuments = new List<DraftDocument>();
+            foreach (var p in data["draft_documents"])
             {
-                drafts.Add(new Draft() { Title = p["title"], Url = p["href"] });
+                draftDocuments.Add(new DraftDocument() { Title = p["title"], Url = p["href"] });
             }
-            return drafts;
+            return draftDocuments;
         }
 
 
@@ -62,7 +62,7 @@ namespace thinkproject
         public IDictionary<string, object> GetDetails(RestClient client)
         {
             dynamic draftdocuments = client.ExecuteRequest(this.Url, RestSharp.Method.GET).ToDictionary(p => p.Key, p => p.Value);
-            SimpleJson.JsonObject data = draftdocuments["draftdocument"];
+            SimpleJson.JsonObject data = draftdocuments["draft_document"];
             return data.ToDictionary(p => p.Key, p => p.Value);
         }
     }
