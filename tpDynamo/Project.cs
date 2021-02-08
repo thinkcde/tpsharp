@@ -89,6 +89,16 @@ namespace tpDynamo
         }
 
         /// <summary>
+        /// List tp! MemberList
+        /// </summary>
+        /// <param name="project">tp! Project</param>
+        /// <returns>Dictionary of MemberLists</returns>
+        public static IEnumerable<thinkproject.MemberList> GetMemberLists(thinkproject.Project project)
+        {
+            return thinkproject.MemberList.GetMemberLists(project, ApiConnection.GetConnection());
+        }
+
+        /// <summary>
         /// Get Project Name
         /// </summary>
         /// <param name="project">tp! Project</param>

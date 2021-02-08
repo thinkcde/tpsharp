@@ -46,12 +46,21 @@ namespace tpDynamo
         /// <summary>
         /// List tp! Documents
         /// </summary>
-        /// <param name="filter">tp! filter</param>
+        /// <param name="filter">tp! Filter</param>
         /// <returns>Dictionary of Documents</returns>
         public static IEnumerable<thinkproject.Document> GetDocuments(thinkproject.Filter filter)
         {
             return thinkproject.Document.GetDocuments(filter, ApiConnection.GetConnection());
         }
 
+        /// <summary>
+        /// List tp! Communications
+        /// </summary>
+        /// <param name="filter">tp! Filter</param>
+        /// <returns>Dictionary of Communications</returns>
+        public static IEnumerable<thinkproject.Communication> GetCommunications(thinkproject.Filter filter)
+        {
+            return thinkproject.Communication.GetCommunications(filter, ApiConnection.GetConnection());
+        }
     }
 }

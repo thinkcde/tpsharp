@@ -43,5 +43,15 @@ namespace tpDynamo
             return member.Url;
         }
 
+        /// <summary>
+        /// List tp! Addresses
+        /// </summary>
+        /// <param name="member">tp! Member</param>
+        /// <returns>Dictionary of Addresses</returns>
+        public static IEnumerable<thinkproject.Address> GetAddresses(thinkproject.Member member)
+        {
+            return thinkproject.Address.GetAddresses(member, ApiConnection.GetConnection());
+        }
+
     }
 }
